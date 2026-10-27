@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Planejador financeiro pessoal offline, inspirado no Livro Padrão da Xiaomi.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>Livro Padrão</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--text:#191919;--muted:#85888d;--line:#eceef1;--red:#ed3b51;--green:#55b83f;--blue:#83c9e9;--shadow:0 2px 12px #20232b08}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Roboto,"Noto Sans",system-ui,-apple-system,sans-serif;padding-bottom:88px}button,input,select{font:inherit}button{cursor:pointer;border:0} .app{max-width:760px;margin:auto;min-height:100vh;background:var(--bg)}.top{background:#fff;padding:calc(18px + env(safe-area-inset-top)) 22px 14px;position:sticky;top:0;z-index:5}.brand{display:flex;align-items:center;gap:13px;font-size:27px;font-weight:500;letter-spacing:-.7px}.brand svg{width:39px;height:39px}.monthbar{display:flex;align-items:center;gap:20px;color:#777;margin-top:26px;font-size:17px}.monthbar button{background:transparent;color:#444;font-size:28px;padding:0 2px}.monthbar .monthlabel{min-width:90px}.content{padding:18px 18px 20px}.card{background:var(--card);border-radius:17px;box-shadow:var(--shadow)}.budget{text-align:center;padding:30px 15px 27px;margin-bottom:14px;background:#f8f8f8}.eyebrow{font-size:16px;color:#383838}.remaining{font-size:35px;font-weight:700;color:var(--red);margin:12px 0 14px;letter-spacing:-1px}.remaining.positive{color:var(--green)}.budgetline{display:flex;align-items:center;justify-content:center;gap:9px;color:#777;flex-wrap:wrap;font-size:14px}.budgetline strong{font-weight:500;color:#555}.edit-budget{background:transparent;color:#555;font-size:20px;padding:0 2px}.totals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}.totalbox{text-align:center;padding:20px 8px;background:#f8f8f8}.totalbox .label{font-size:15px;color:#444}.totalbox .value{font-size:27px;font-weight:700;margin-top:7px;letter-spacing:-.5px}.green{color:var(--green)}.red{color:var(--red)}.sectionhead{display:flex;justify-content:space-between;align-items:center;color:#888;font-size:14px;padding:5px 2px 11px}.sectionhead strong{font-weight:500}.list{background:#fff;border-radius:15px;overflow:hidden;border:1px solid #f0f0f0}.tx{display:flex;align-items:center;gap:13px;padding:16px 15px;border-bottom:1px solid var(--line);min-height:74px}.tx:last-child{border-bottom:0}.caticon{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:grid;place-items:center;background:#f7f7f7;color:#62666b;font-size:17px}.txmain{min-width:0;flex:1}.txname{font-size:15px;font-weight:600;overflow-wrap:anywhere}.txmeta{font-size:12px;color:#92969b;margin-top:5px}.txvalue{font-size:17px;font-weight:600;text-align:right;white-space:nowrap}.empty{text-align:center;padding:35px 18px;color:#96999e;font-size:14px;line-height:1.5}.fab{position:fixed;right:max(24px,calc((100vw - 760px)/2 + 24px));bottom:92px;width:62px;height:62px;border-radius:50%;background:#8bcde9;color:#fff;font-size:39px;box-shadow:0 5px 18px #0002;z-index:7;line-height:1}.bottomnav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #f0f0f0;display:flex;justify-content:center;z-index:8;padding-bottom:env(safe-area-inset-bottom)}.navinner{width:100%;max-width:760px;display:flex}.navbtn{flex:1;background:#fff;color:#999;padding:12px 3px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px}.navbtn .navicon{font-size:23px;line-height:1.1}.navbtn.active{color:#8bcde9}.page{display:none}.page.active{display:block}.page-title{font-size:23px;font-weight:500;margin:8px 0 18px}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.statcard{padding:18px}.statcard .small{font-size:13px;color:#888}.statcard .big{font-size:23px;font-weight:700;margin-top:8px}.barrow{margin:18px 0}.barlabel{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px;gap:12px}.barbg{height:8px;border-radius:8px;background:#eceef1;overflow:hidden}.barfill{height:100%;border-radius:8px;background:#8bcde9}.settingrow{display:flex;justify-content:space-between;align-items:center;padding:17px;background:#fff;border-radius:13px;margin-bottom:10px;gap:10px}.settingrow button{background:#f1f2f4;border-radius:9px;padding:10px 12px;color:#444}.muted{color:#8a8d92;font-size:13px;line-height:1.5}.modalback{display:none;position:fixed;inset:0;background:#0006;z-index:20;align-items:flex-end;justify-content:center}.modalback.show{display:flex}.modal{width:100%;max-width:600px;max-height:92vh;overflow:auto;background:#fff;border-radius:22px 22px 0 0;padding:23px 20px calc(22px + env(safe-area-inset-bottom))}.modalhead{display:flex;justify-content:space-between;align-items:center;font-size:21px;font-weight:600;margin-bottom:18px}.close{background:#f2f3f5;border-radius:50%;width:34px;height:34px;font-size:22px;color:#555}.typepick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}.typepick button{padding:13px;border-radius:11px;background:#f2f3f5;color:#555}.typepick button.selected.income{background:#eaf7e7;color:#369b2a}.typepick button.selected.expense{background:#fdecef;color:#d82f45}label{display:block;font-size:13px;color:#666;margin:13px 0 6px}input,select{width:100%;border:1px solid #e3e5e8;border-radius:11px;padding:13px;background:#fff;color:#222;outline:none}input:focus,select:focus{border-color:#8bcde9}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.primary{width:100%;padding:14px;border-radius:12px;background:#8bcde9;color:#17313c;font-weight:700;margin-top:19px}.danger{background:#fff0f1;color:#d12f43;padding:12px;border-radius:10px;margin-top:10px;width:100%}.hint{font-size:12px;color:#92969b;margin-top:12px}.toast{position:fixed;left:50%;bottom:160px;transform:translateX(-50%);background:#24272b;color:white;border-radius:12px;padding:11px 16px;font-size:13px;z-index:30;display:none;max-width:90%;text-align:center}.toast.show{display:block}@media(min-width:600px){.content{padding:24px}.budget{padding:36px}.modalback{align-items:center}.modal{border-radius:22px}.fab{bottom:95px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M8 3.5h15l10 10V35a2 2 0 0 1-2 2H8a3 3 0 0 1-3-3V6.5a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="2.5"/><path d="M23 4v10h10M12 19h16M12 25h16M12 31h11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span>Livro Padrão</span></div>
+  <div class="monthbar"><button id="prevMonth" aria-label="Mês anterior">‹</button><span class="monthlabel" id="monthLabel">10/2026</span><button id="nextMonth" aria-label="Próximo mês">›</button></div>
+</header>
+<main class="content">
+<section id="bookPage" class="page active">
+  <div class="card budget">
+    <div class="eyebrow">Orçamento Mensal Restante</div>
+    <div id="remaining" class="remaining">R$ 0,00</div>
+    <div class="budgetline"><span>Orçamento Mensal Total</span><strong id="budgetValue">R$ 2.000,00</strong><button class="edit-budget" id="editBudget" aria-label="Editar orçamento">✎</button></div>
+  </div>
+  <div class="totals">
+    <div class="card totalbox"><div class="label">Receita Total</div><div id="incomeTotal" class="value green">R$ 0,00</div></div>
+    <div class="card totalbox"><div class="label">Despesa Total</div><div id="expenseTotal" class="value red">R$ 0,00</div></div>
+  </div>
+  <div class="sectionhead"><strong id="dayCount">Lançamentos</strong><span id="expenseSummary"></span></div>
+  <div id="transactionList" class="list"></div>
+</section>
+<section id="statsPage" class="page">
+  <div class="page-title">Estatísticas</div>
+  <div class="statgrid">
+    <div class="card statcard"><div class="small">Receitas do mês</div><div id="statIncome" class="big green">R$ 0,00</div></div>
+    <div class="card statcard"><div class="small">Despesas do mês</div><div id="statExpense" class="big red">R$ 0,00</div></div>
+    <div class="card statcard"><div class="small">Saldo do mês</div><div id="statBalance" class="big">R$ 0,00</div></div>
+    <div class="card statcard"><div class="small">Lançamentos</div><div id="statCount" class="big">0</div></div>
+  </div>
+  <div class="card" style="padding:18px;margin-top:14px"><div style="font-weight:600">Despesas por categoria</div><div id="categoryBars"></div></div>
+  <div class="card" style="padding:18px;margin-top:14px"><div style="font-weight:600">Últimos 6 meses</div><div id="historyBars"></div></div>
+</section>
+<section id="profilePage" class="page">
+  <div class="page-title">Perfil e dados</div>
+  <div class="settingrow"><div><strong>Orçamento do mês</strong><div class="muted">Defina o limite de gastos para o mês selecionado.</div></div><button id="profileBudget">Editar</button></div>
+  <div class="settingrow"><div><strong>Exportar dados</strong><div class="muted">Salve uma cópia dos lançamentos em arquivo JSON.</div></div><button id="exportData">Exportar</button></div>
+  <div class="settingrow"><div><strong>Importar dados</strong><div class="muted">Restaure um arquivo JSON exportado anteriormente.</div></div><button id="importDataBtn">Importar</button><input type="file" id="importFile" accept=".json,application/json" hidden></div>
+  <div class="settingrow"><div><strong>Apagar todos os dados</strong><div class="muted">Essa ação não pode ser desfeita. Exporte antes, se quiser guardar uma cópia.</div></div><button id="clearData">Apagar</button></div>
+  <p class="muted">Seus dados ficam armazenados neste navegador, neste aparelho. Limpar os dados do navegador ou desinstalar o navegador pode apagar os lançamentos. Exporte uma cópia de segurança de vez em quando.</p>
+  <p class="muted">Livro Padrão • planejador financeiro pessoal offline.</p>
+</section>
+</main>
+<button id="addBtn" class="fab" aria-label="Adicionar lançamento">+</button>
+<nav class="bottomnav"><div class="navinner">
+<button class="navbtn active" data-page="bookPage"><span class="navicon">▤</span><span>Livro Razão</span></button>
+<button class="navbtn" data-page="statsPage"><span class="navicon">◴</span><span>Estatísticas</span></button>
+<button class="navbtn" data-page="profilePage"><span class="navicon">♙</span><span>Perfil</span></button>
+</div></nav>
+</div>
+<div id="txModal" class="modalback" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal">
+<div class="modalhead"><span id="modalTitle">Novo lançamento</span><button class="close" id="closeModal" aria-label="Fechar">×</button></div>
+<div class="typepick"><button id="typeExpense" class="selected expense">− Despesa</button><button id="typeIncome" class="income">＋ Receita</button></div>
+<form id="txForm">
+<input id="txId" type="hidden">
+<label for="txTitle">Descrição</label><input id="txTitle" required maxlength="80" placeholder="Ex.: mercado, salário, aluguel">
+<div class="formgrid"><div><label for="txAmount">Valor (R$)</label><input id="txAmount" required type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0,00"></div><div><label for="txDate">Data</label><input id="txDate" required type="date"></div></div>
+<label for="txCategory">Categoria</label><select id="txCategory"></select>
+<label for="txNote">Observação (opcional)</label><input id="txNote" maxlength="160" placeholder="Detalhes do lançamento">
+<button class="primary" type="submit" id="saveTx">Salvar lançamento</button>
+<button class="danger" type="button" id="deleteTx" style="display:none">Excluir lançamento</button>
+<div class="hint">O lançamento será salvo apenas neste aparelho e navegador.</div>
+</form>
+</div>
+</div>
+<div id="budgetModal" class="modalback" role="dialog" aria-modal="true">
+<div class="modal"><div class="modalhead"><span>Orçamento mensal</span><button class="close" id="closeBudget">×</button></div>
+<label for="budgetInput">Limite de gastos (R$)</label><input id="budgetInput" type="number" min="0" step="0.01" inputmode="decimal" placeholder="2000,00">
+<button id="saveBudget" class="primary">Salvar orçamento</button>
+<p class="hint">O orçamento é separado por mês. Alterar o mês no topo permite definir limites diferentes.</p></div>
+</div>
+<div id="toast" class="toast"></div>
+<script>
+(() => {
+'use strict';
+const KEY='livroPadrao.data.v1';
+const categories={
+ expense:['Moradia','Alimentação','Transporte','Saúde','Educação','Contas','Compras','Entretenimento','Assinaturas','Dívidas','Outros'],
+ income:['Salário','Freelance','Investimentos','Vendas','Presente','Reembolso','Outros']
+};
+const icons={'Moradia':'⌂','Alimentação':'♨','Transporte':'↗','Saúde':'✚','Educação':'▤','Contas':'▦','Compras':'▣','Entretenimento':'♧','Assinaturas':'▤','Dívidas':'↘','Salário':'＄','Freelance':'✎','Investimentos':'◴','Vendas':'↗','Presente':'♡','Reembolso':'↩','Outros':'•••'};
+const $=id=>document.getElementById(id);
+const money=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const pad=n=>String(n).padStart(2,'0');
+const monthKey=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}`;
+const parseDate=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12)};
+let state={transactions:[],budgets:{}};
+let selectedMonth=monthKey(new Date()), txType='expense';
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||'{}');if(Array.isArray(v.transactions))state.transactions=v.transactions;if(v.budgets&&typeof v.budgets==='object')state.budgets=v.budgets;}catch(e){console.warn('Não foi possível ler os dados salvos',e)}}
+function persist(){localStorage.setItem(KEY,JSON.stringify(state))}
+function monthTransactions(){return state.transactions.filter(t=>t.date&&t.date.slice(0,7)===selectedMonth)}
+function sum(arr,type){return arr.filter(t=>t.type===type).reduce((s,t)=>s+Number(t.amount||0),0)}
+function monthBudget(){return Number(state.budgets[selectedMonth]??2000)}
+function dateLabel(s){const d=parseDate(s);return `${pad(d.getDate())}/${pad(d.getMonth()+1)}`}
+function showToast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400)}
+function updateMonthLabel(){const [y,m]=selectedMonth.split('-').map(Number);$('monthLabel').textContent=`${pad(m)}/${y}`}
+function render(){
+ updateMonthLabel();
+ const txs=monthTransactions(), inc=sum(txs,'income'), exp=sum(txs,'expense'), rem=monthBudget()-exp;
+ $('remaining').textContent=money(rem);$('remaining').classList.toggle('positive',rem>=0);
+ $('budgetValue').textContent=money(monthBudget());$('incomeTotal').textContent=money(inc);$('expenseTotal').textContent=money(exp);
+ $('dayCount').textContent=txs.length?`${txs.length} lançamento${txs.length===1?'':'s'}`:'Lançamentos';
+ $('expenseSummary').textContent=`Despesas: ${money(exp)}`;
+ const list=$('transactionList');
+ const sorted=[...txs].sort((a,b)=>b.date.localeCompare(a.date)||b.createdAt-a.createdAt);
+ if(!sorted.length){list.innerHTML='<div class="empty">Nenhum lançamento neste mês.<br>Toque no botão + para adicionar sua primeira receita ou despesa.</div>'}
+ else {
+ let html='', last='';
+ for(const t of sorted){
+  if(t.date!==last){html+=`<div style="padding:12px 15px 7px;background:#fbfbfb;color:#92969b;font-size:12px;display:flex;justify-content:space-between"><span>${dateLabel(t.date)}</span><span>${t.type==='expense'?'Despesa':'Receita'}</span></div>`;last=t.date}
+  html+=`<button class="tx" data-edit="${t.id}" style="width:100%;text-align:left;background:#fff;color:inherit"><span class="caticon">${icons[t.category]||'•••'}</span><span class="txmain"><span class="txname">${esc(t.title)}</span><span class="txmeta">${esc(t.category)}${t.note?' · '+esc(t.note):''}</span></span><span class="txvalue ${t.type==='income'?'green':'red'}">${t.type==='income'?'+':'−'}${money(t.amount)}</span></button>`;
+ }
+ list.innerHTML=html;
+ list.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>openTx(b.dataset.edit)));
+ }
+ renderStats(txs,inc,exp);
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderStats(txs,inc,exp){
+ $('statIncome').textContent=money(inc);$('statExpense').textContent=money(exp);$('statBalance').textContent=money(inc-exp);$('statBalance').className='big '+(inc-exp>=0?'green':'red');$('statCount').textContent=String(txs.length);
+ const cats={};txs.filter(t=>t.type==='expense').forEach(t=>cats[t.category]=(cats[t.category]||0)+Number(t.amount));
+ const entries=Object.entries(cats).sort((a,b)=>b[1]-a[1]);const max=entries[0]?.[1]||1;
+ $('categoryBars').innerHTML=entries.length?entries.map(([name,val])=>`<div class="barrow"><div class="barlabel"><span>${esc(name)}</span><strong>${money(val)}</strong></div><div class="barbg"><div class="barfill" style="width:${Math.max(2,val/max*100)}%"></div></div></div>`).join(''):'<div class="empty">Adicione despesas para visualizar as categorias.</div>';
+ const [yy,mm]=selectedMonth.split('-').map(Number);const months=[];
+ for(let i=5;i>=0;i--){const d=new Date(yy,mm-1-i,1);const key=monthKey(d);const ts=state.transactions.filter(t=>t.date.startsWith(key));months.push({label:`${pad(d.getMonth()+1)}/${String(d.getFullYear()).slice(-2)}`,income:sum(ts,'income'),expense:sum(ts,'expense')})}
+ const maxV=Math.max(1,...months.flatMap(m=>[m.income,m.expense]));
+ $('historyBars').innerHTML=months.map(m=>`<div class="barrow"><div class="barlabel"><span>${m.label}</span><span><span class="green">+${money(m.income)}</span> · <span class="red">−${money(m.expense)}</span></span></div><div class="barbg" style="display:flex"><div style="height:100%;width:${m.income/maxV*100}%;background:#65bd50"></div><div style="height:100%;width:${m.expense/maxV*100}%;background:#ed6475"></div></div></div>`).join('');
+}
+function fillCategories(type,selected){$('txCategory').innerHTML=categories[type].map(c=>`<option value="${c}" ${c===selected?'selected':''}>${c}</option>`).join('')}
+function setType(type){txType=type;$('typeExpense').classList.toggle('selected',type==='expense');$('typeIncome').classList.toggle('selected',type==='income');fillCategories(type)}
+function openTx(id=null){
+ const t=id?state.transactions.find(x=>x.id===id):null;
+ $('txForm').reset();$('txId').value=t?.id||'';$('modalTitle').textContent=t?'Editar lançamento':'Novo lançamento';
+ setType(t?.type||'expense');if(t)fillCategories(t.type,t.category);
+ $('txTitle').value=t?.title||'';$('txAmount').value=t?.amount??'';$('txDate').value=t?.date||`${selectedMonth}-${pad(new Date().getDate())}`;$('txNote').value=t?.note||'';
+ $('deleteTx').style.display=t?'block':'none';$('saveTx').textContent=t?'Salvar alterações':'Salvar lançamento';
+ $('txModal').classList.add('show');setTimeout(()=>$('txTitle').focus(),100);
+}
+function closeTx(){$('txModal').classList.remove('show')}
+function openBudget(){$('budgetInput').value=monthBudget();$('budgetModal').classList.add('show')}
+function closeBudget(){$('budgetModal').classList.remove('show')}
+function switchPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));$('addBtn').style.display=id==='bookPage'?'block':'none'}
+$('prevMonth').addEventListener('click',()=>{const [y,m]=selectedMonth.split('-').map(Number);selectedMonth=monthKey(new Date(y,m-2,1));render()});
+$('nextMonth').addEventListener('click',()=>{const [y,m]=selectedMonth.split('-').map(Number);selectedMonth=monthKey(new Date(y,m,1));render()});
+$('addBtn').addEventListener('click',()=>openTx());$('closeModal').addEventListener('click',closeTx);$('txModal').addEventListener('click',e=>{if(e.target===$('txModal'))closeTx()});
+$('typeExpense').addEventListener('click',()=>setType('expense'));$('typeIncome').addEventListener('click',()=>setType('income'));
+$('txForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number($('txAmount').value);if(!Number.isFinite(amount)||amount<=0){showToast('Informe um valor maior que zero.');return}
+ const id=$('txId').value;const old=id?state.transactions.find(t=>t.id===id):null;
+ const tx={id:id||`${Date.now()}-${Math.random().toString(36).slice(2,8)}`,type:txType,title:$('txTitle').value.trim(),amount:Math.round(amount*100)/100,date:$('txDate').value,category:$('txCategory').value,note:$('txNote').value.trim(),createdAt:old?.createdAt||Date.now()};
+ if(!tx.title||!tx.date){showToast('Preencha a descrição e a data.');return}
+ if(old)state.transactions=state.transactions.map(t=>t.id===id?tx:t);else state.transactions.push(tx);
+ selectedMonth=tx.date.slice(0,7);persist();render();closeTx();showToast(old?'Lançamento atualizado!':'Lançamento salvo!');
+});
+$('deleteTx').addEventListener('click',()=>{const id=$('txId').value;if(!id)return;if(confirm('Excluir este lançamento?')){state.transactions=state.transactions.filter(t=>t.id!==id);persist();render();closeTx();showToast('Lançamento excluído.')}});
+$('editBudget').addEventListener('click',openBudget);$('profileBudget').addEventListener('click',openBudget);$('closeBudget').addEventListener('click',closeBudget);$('budgetModal').addEventListener('click',e=>{if(e.target===$('budgetModal'))closeBudget()});
+$('saveBudget').addEventListener('click',()=>{const n=Number($('budgetInput').value);if(!Number.isFinite(n)||n<0){showToast('Informe um orçamento válido.');return}state.budgets[selectedMonth]=Math.round(n*100)/100;persist();render();closeBudget();showToast('Orçamento salvo!')});
+document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>switchPage(b.dataset.page)));
+$('exportData').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='livro-padrao-backup.json';a.click();URL.revokeObjectURL(url);showToast('Backup exportado.')});
+$('importDataBtn').addEventListener('click',()=>$('importFile').click());
+$('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const v=JSON.parse(await f.text());if(!Array.isArray(v.transactions)||typeof v.budgets!=='object')throw Error();if(!confirm('Importar substituirá os dados atuais. Continuar?'))return;state={transactions:v.transactions,budgets:v.budgets||{}};persist();render();showToast('Dados importados!')}catch(err){showToast('Arquivo inválido ou incompatível.')}finally{e.target.value=''}});
+$('clearData').addEventListener('click',()=>{if(confirm('Tem certeza? Todos os lançamentos e orçamentos deste aparelho serão apagados.')){state={transactions:[],budgets:{}};persist();render();showToast('Dados apagados.')}});
+load();render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+})();
+</script>
+</body>
+</html>

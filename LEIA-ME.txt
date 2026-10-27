@@ -1,0 +1,30 @@
+# Livro Padrão — Planejador Financeiro
+
+Aplicativo web instalável (PWA), em português brasileiro, com visual inspirado no Livro Padrão da Xiaomi.
+
+## Recursos
+- Orçamento mensal configurável por mês.
+- Receitas e despesas com data, categoria e observação.
+- Criar, editar e excluir lançamentos.
+- Totais e saldo do mês.
+- Estatísticas por categoria e comparação dos últimos seis meses.
+- Dados guardados localmente no navegador, sem conta.
+- Exportação e importação de backup JSON.
+- Interface responsiva e funcionamento offline depois da primeira abertura, quando hospedado corretamente.
+
+## Como instalar no Android
+Para instalar como PWA, o app precisa ser publicado em um endereço HTTPS. O jeito mais simples pelo celular é usar GitHub Pages:
+
+1. Entre em https://github.com e crie uma conta, caso não tenha.
+2. Crie um repositório público, por exemplo `livro-padrao`.
+3. Envie **todos os arquivos desta pasta** para a raiz do repositório: `index.html`, `manifest.json`, `sw.js` e `icon.svg`.
+4. No repositório, abra **Settings → Pages**.
+5. Em **Build and deployment**, escolha **Deploy from a branch**, branch `main` e pasta `/(root)`, depois salve.
+6. Aguarde o GitHub mostrar o endereço publicado (normalmente `https://SEU-USUARIO.github.io/livro-padrao/`).
+7. Abra esse endereço no Chrome do Android, toque no menu ⋮ e escolha **Instalar app** ou **Adicionar à tela inicial**.
+
+## Importante sobre os dados
+Os dados ficam no armazenamento local do navegador instalado neste aparelho. Não há sincronização com outros aparelhos. Se limpar os dados do navegador, trocar de navegador ou desinstalá-lo, os dados podem ser perdidos. Use Perfil → Exportar dados para guardar backups. A instalação PWA deve ser aberta sempre pelo mesmo navegador/perfil para manter acesso aos mesmos dados.
+
+## Teste local
+Pode abrir `index.html` para conferir o visual, mas a instalação PWA e o funcionamento offline confiável precisam de HTTPS (por exemplo, GitHub Pages).

@@ -1,0 +1,19 @@
+{
+  "name": "Livro Padrão - Planejador Financeiro",
+  "short_name": "Livro Padrão",
+  "description": "Planejador financeiro pessoal offline.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
