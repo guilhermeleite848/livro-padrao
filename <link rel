@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#6759d6">
 <meta name="description" content="Planejador financeiro pessoal offline, inspirado no Livro Padrão da Xiaomi.">
 <link rel="manifest" href="manifest.json">
-<link rel=<link rel="icon" href="livro_padrao_icone_3.png" type="image/png">
+<link rel="icon" href="livro_padrao_icone_3.png" type="image/png">
 <title>Livro Padrão</title>
 <style>
 :root{--bg:#f3f1fb;--card:#fff;--text:#24213b;--muted:#77758d;--line:#e9e5f4;--red:#e45c72;--green:#239b79;--blue:#6759d6;--purple:#8c67dc;--shadow:0 5px 18px #39306b0d}
