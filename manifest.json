@@ -1,3 +1,4 @@
+
 {
   "name": "Livro Padrão - Planejador Financeiro",
   "short_name": "Livro Padrão",
@@ -6,14 +7,14 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f5f6f8",
-  "theme_color": "#ffffff",
+  "background_color": "#11121b",
+  "theme_color": "#6759d6",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "livro_padrao_icone_3.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
